@@ -27,6 +27,28 @@ body {
   line-height: 1.6;
 }
 
+.home-page .brand,
+.home-page .entry-copy h1,
+.home-page .entry-copy p,
+.home-page .logo-link span {
+  font-family: "DFKai-SB", "BiauKai", "標楷體", "KaiTi", cursive;
+}
+
+.home-page .site-header {
+  justify-content: flex-end;
+}
+
+.home-page .entry-copy h1 {
+  letter-spacing: 0.08em;
+  text-wrap: balance;
+  text-shadow: 2px 3px 0 rgba(200, 154, 50, 0.2);
+}
+
+.home-page .entry-copy p {
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
 body.boxing-page {
   --paper: #123b66;
   --page-tint: #d9edff;
