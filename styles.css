@@ -27,6 +27,90 @@ body {
   line-height: 1.6;
 }
 
+body.boxing-page {
+  --paper: #123b66;
+  --page-tint: #d9edff;
+}
+
+body.dance-page {
+  --paper: #7f1d2d;
+  --page-tint: #f8d9df;
+}
+
+body.boxing-page .site-header,
+body.boxing-page .index-bar,
+body.dance-page .site-header,
+body.dance-page .index-bar {
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+}
+
+body.boxing-page .site-header,
+body.dance-page .site-header {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+body.boxing-page .top-nav a,
+body.dance-page .top-nav a {
+  color: #fff;
+}
+
+body.boxing-page .top-nav a:hover,
+body.dance-page .top-nav a:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+body.boxing-page .index-bar,
+body.dance-page .index-bar {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+body.boxing-page .section,
+body.dance-page .section {
+  color: #fff;
+}
+
+body.boxing-page .category-card,
+body.dance-page .category-card,
+body.boxing-page .teacher-card,
+body.dance-page .teacher-card,
+body.boxing-page .page-hero,
+body.dance-page .page-hero,
+body.boxing-page .index-bar a,
+body.dance-page .index-bar a {
+  color: var(--ink);
+  background: var(--page-tint);
+}
+
+body.boxing-page .course-lead,
+body.dance-page .course-lead {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+body.boxing-page .eyebrow,
+body.dance-page .eyebrow {
+  color: #fff1a8;
+}
+
+body.boxing-page .feature-list li,
+body.dance-page .feature-list li {
+  border-left-color: var(--paper);
+  color: var(--ink);
+  background: var(--page-tint);
+}
+
+body.boxing-page .audience-tags span,
+body.dance-page .audience-tags span {
+  color: var(--ink);
+  background: var(--page-tint);
+}
+
+body.boxing-page .course-note,
+body.dance-page .course-note {
+  color: var(--ink);
+  background: var(--page-tint);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -378,6 +462,62 @@ a {
     repeating-linear-gradient(45deg, rgba(255,255,255,0.12), rgba(255,255,255,0.12) 8px, transparent 8px, transparent 18px);
 }
 
+.video-placeholder.has-video {
+  display: block;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-placeholder.has-video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-fallback {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+
+.video-fallback img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 72px;
+  height: 52px;
+  place-items: center;
+  border-radius: 14px;
+  transform: translate(-50%, -50%);
+  background: #e62117;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.34);
+  font-size: 25px;
+}
+
+.video-fallback-label {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.78);
+  font-size: 14px;
+}
+
 .filters {
   display: grid;
   grid-template-columns: repeat(3, minmax(180px, 1fr));
@@ -422,6 +562,14 @@ a {
   font-weight: 800;
 }
 
+.teacher-media img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .teacher-body {
   padding: 16px;
 }
@@ -434,6 +582,86 @@ a {
 .teacher-body p {
   margin: 7px 0;
   color: var(--muted);
+}
+
+.booking-trigger {
+  cursor: pointer;
+  font: inherit;
+}
+
+.booking-dialog {
+  width: min(92vw, 560px);
+  padding: 24px;
+  border: 0;
+  border-radius: 14px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.booking-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.booking-dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.booking-dialog-head p,
+.booking-dialog-head h2 {
+  margin: 0;
+}
+
+.booking-dialog-head p {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.booking-dialog-head h2 {
+  font-size: 24px;
+}
+
+.dialog-close {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.booking-help {
+  color: var(--muted);
+}
+
+.booking-slots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.booking-slot {
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.booking-slot:hover,
+.booking-slot.selected {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.line-button {
+  width: 100%;
+  border-color: #06c755;
+  background: #06c755;
 }
 
 .tag-row {
