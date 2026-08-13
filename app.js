@@ -28,6 +28,44 @@ const teachers = [
   },
 ];
 
+const coursePageMeta = {
+  "dance-mv.html": ["DANCE WITH PURPOSE.", "流行舞蹈", ["零基礎友善", "指定歌曲", "彈性安排"]],
+  "dance-jazz.html": ["MOVE WITH ELEGANCE.", "爵士舞蹈", ["線條訓練", "情感表現", "舞台技巧"]],
+  "dance-kids.html": ["GROW WITH RHYTHM.", "幼兒舞蹈", ["兒童友善", "律動遊戲", "安全學習"]],
+  "dance-hiphop.html": ["FEEL THE BEAT.", "街舞課程", ["零基礎友善", "律動基礎", "風格培養"]],
+  "dance-cheerleading.html": ["SHINE TOGETHER.", "彩球拉拉", ["團隊訓練", "活力編舞", "舞台表現"]],
+  "dance-corporate.html": ["CREATE AS A TEAM.", "企業團班", ["客製編排", "彈性人數", "活動演出"]],
+  "boxing-beginner.html": ["BUILD YOUR FOUNDATION.", "拳擊入門", ["零基礎友善", "基礎拳法", "體能建立"]],
+  "boxing-advanced.html": ["LEVEL UP YOUR SKILLS.", "進階拳擊", ["技術提升", "攻防節奏", "實戰應用"]],
+  "boxing-sparring.html": ["FIGHT WITH PURPOSE.", "實戰拳擊", ["教練評估", "安全對練", "戰術訓練"]],
+};
+
+function enhanceCoursePage() {
+  const page = window.location.pathname.split("/").pop() || "";
+  const meta = coursePageMeta[page];
+  const teacherSection = document.querySelector("[data-teachers]")?.closest(".section");
+  const hero = document.querySelector(".page-hero");
+  if (!meta || !teacherSection || !hero) return;
+
+  document.body.classList.add("course-page");
+  const titleNode = hero.querySelector("h1");
+  const title = titleNode?.textContent.replace(/^[AB]\.\d\s*/, "") || meta[1];
+  if (titleNode) titleNode.textContent = title;
+  hero.insertAdjacentHTML("afterbegin", `<div class="course-breadcrumb"><a href="index.html">首頁</a><span>›</span><a href="${page.startsWith("dance") ? "dance.html" : "boxing.html"}">探索課程</a><span>›</span><b>${title}</b></div><p class="course-slogan">${meta[0]}</p>`);
+  hero.insertAdjacentHTML("beforeend", `<div class="hero-course-tags">${meta[2].map((tag, i) => `<span>${["♙", "☆", "◷"][i]}　${tag}</span>`).join("")}</div><div class="course-side-art"><span>RY</span><img src="person/person_1.jpg" alt="${title}課程形象"></div>`);
+
+  const info = document.createElement("section");
+  info.className = "course-overview-panel";
+  info.innerHTML = `<div class="overview-title"><i></i><h2>這堂課適合你</h2><i></i></div><div class="fit-grid"><div><b>♙</b><strong>零基礎</strong><span>第一次學也可以</span></div><div><b>♫</b><strong>喜歡${page.startsWith("dance") ? "音樂律動" : "運動挑戰"}</strong><span>依照興趣開始</span></div><div><b>✧</b><strong>想提升感受</strong><span>建立技巧與協調</span></div><div><b>♔</b><strong>想專屬學習</strong><span>照自己的進度上課</span></div></div><div class="learn-title"><i></i><h3>這堂課你可以學到</h3><i></i></div><div class="learn-grid"><span>♧<b>基礎律動</b></span><span>♬<b>動作拆解</b></span><span>▣<b>${page.startsWith("dance") ? "舞碼編排" : "攻防技巧"}</b></span><span>☆<b>自信表現</b></span></div>`;
+  teacherSection.before(info);
+
+  teacherSection.querySelector("h2").textContent = "選擇你的老師";
+  teacherSection.classList.add("course-teachers-section");
+  teacherSection.insertAdjacentHTML("beforeend", `<a class="all-teachers-link" href="${page.startsWith("dance") ? "dance.html" : "boxing.html"}">查看所有老師　→</a>`);
+
+  teacherSection.insertAdjacentHTML("afterend", `<section class="booking-process"><h2>如何開始上課？</h2><div class="process-steps"><span><b>⌕</b><small>STEP 01</small><strong>選擇課程</strong></span><i>→</i><span><b>♙</b><small>STEP 02</small><strong>挑選老師</strong></span><i>→</i><span><b>LINE</b><small>STEP 03</small><strong>加入 LINE</strong></span><i>→</i><span><b>▣</b><small>STEP 04</small><strong>專人確認需求</strong></span><i>→</i><span><b>✓</b><small>STEP 05</small><strong>完成媒合</strong></span></div><a class="course-line-cta" href="https://line.me/R/share?text=${encodeURIComponent(`您好，我想詢問${title}課程。`)}" target="_blank" rel="noopener noreferrer"><b>LINE</b><span>加入官方 LINE 開始媒合<small>一對一專屬課程・由專人為你服務</small></span><i>專人服務時間：10:00－21:00　→</i></a></section>`);
+}
+
 function renderTeachers() {
   document.querySelectorAll("[data-teachers]").forEach((root) => {
     root.innerHTML = teachers.map((teacher) => `
@@ -134,6 +172,7 @@ function renderDemoVideos() {
   });
 }
 
+enhanceCoursePage();
 renderTeachers();
 renderDemoVideos();
 setupBookingDialog();
