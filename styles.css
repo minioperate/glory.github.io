@@ -1734,6 +1734,43 @@ body.dance-page.dance-page .top-nav a:hover,
 body.dance-page.dance-page .index-bar a:hover,
 body.dance-page.dance-page .index-bar a.active { color: #294967; }
 
+/* Popular course card imagery */
+.popular-section .mini-course-grid a {
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+  border-color: rgba(255,255,255,.16);
+  background-color: #1b2b3e;
+  background-image: linear-gradient(0deg,rgba(10,20,33,.96) 0%,rgba(21,37,56,.62) 58%,rgba(17,30,47,.12) 100%);
+  background-size: cover;
+  background-position: center;
+  transition: transform .2s ease,filter .2s ease;
+}
+.popular-section .mini-course-grid.boxing-row a {
+  background-color: #541116;
+  background-image: linear-gradient(0deg,rgba(49,5,9,.97) 0%,rgba(77,11,16,.62) 58%,rgba(56,7,11,.12) 100%);
+}
+.popular-section .mini-course-grid:not(.boxing-row) a:nth-child(1) { background-image: linear-gradient(0deg,rgba(10,20,33,.96),rgba(21,37,56,.28)),url("course_figure/dance-kpop.png"); }
+.popular-section .mini-course-grid:not(.boxing-row) a:nth-child(2) { background-image: linear-gradient(0deg,rgba(10,20,33,.96),rgba(21,37,56,.28)),url("course_figure/dance-hiphop.png"); }
+.popular-section .mini-course-grid:not(.boxing-row) a:nth-child(3) { background-image: linear-gradient(0deg,rgba(10,20,33,.96),rgba(21,37,56,.28)),url("course_figure/dance-jazz.png"); }
+.popular-section .mini-course-grid:not(.boxing-row) a:nth-child(4) { background-image: linear-gradient(0deg,rgba(10,20,33,.96),rgba(21,37,56,.28)),url("course_figure/dance-kids.png"); }
+.popular-section .mini-course-grid:not(.boxing-row) a:nth-child(5) { background-image: linear-gradient(0deg,rgba(10,20,33,.96),rgba(21,37,56,.28)),url("course_figure/dance-more.png"); }
+.popular-section .mini-course-grid.boxing-row a:nth-child(1) { background-image: linear-gradient(0deg,rgba(49,5,9,.97),rgba(77,11,16,.25)),url("course_figure/boxing-beginner.png"); }
+.popular-section .mini-course-grid.boxing-row a:nth-child(2) { background-image: linear-gradient(0deg,rgba(49,5,9,.97),rgba(77,11,16,.25)),url("course_figure/boxing-advanced.png"); }
+.popular-section .mini-course-grid.boxing-row a:nth-child(3) { background-image: linear-gradient(0deg,rgba(49,5,9,.97),rgba(77,11,16,.25)),url("course_figure/boxing-fitness.png"); }
+.popular-section .mini-course-grid.boxing-row a:nth-child(4) { background-image: linear-gradient(0deg,rgba(49,5,9,.97),rgba(77,11,16,.25)),url("course_figure/boxing-kids.png"); }
+.popular-section .mini-course-grid.boxing-row a:nth-child(5) { background-image: linear-gradient(0deg,rgba(49,5,9,.97),rgba(77,11,16,.25)),url("course_figure/boxing-more.png"); }
+.popular-section .mini-course-grid a:hover { z-index: 2; filter: brightness(1.1); transform: translateY(-5px); }
+.popular-section .mini-course-grid b { color: rgba(255,255,255,.88); text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+.popular-section .mini-course-grid h3 { color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+.popular-section .mini-course-grid p { color: rgba(255,255,255,.78); }
+.popular-section .mini-course-grid span { color: #fff; }
+
 /* Teacher directory and profile */
 .teachers-page,
 .teacher-profile-page { background: #f7f3ef; }
