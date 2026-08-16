@@ -134,7 +134,6 @@ body.dance-page .audience-tags span { background: var(--ry-paper); }
 .home-page .entry-copy h1 { margin: 18px 0; font-size: clamp(42px, 6vw, 72px); line-height: 1.25; letter-spacing: .08em; text-shadow: none; }
 .home-page .entry-copy h1 em { color: var(--ry-wine); font-style: normal; }
 .home-page .entry-copy p { max-width: 520px; color: #655b57; font-weight: 400; letter-spacing: .08em; }
-.hero-monogram { position: absolute; right: 9%; color: rgba(111,21,27,.09); font-size: clamp(150px, 24vw, 310px); line-height: 1; }
 .course-portals { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: -20px 4% 0; }
 .course-portal { min-height: 300px; padding: 36px; color: #fff; background: linear-gradient(135deg, #7e2729, #421013); transition: transform .2s ease; }
 .course-portal.dance { background: linear-gradient(135deg, #354d68, #16283e); }
@@ -158,7 +157,6 @@ body.guide-page .category-card .pill-link { color: var(--ry-wine); }
   .top-nav { gap: 6px; }
   .home-main { padding-inline: 0; }
   .home-hero { min-height: 390px; padding: 52px 24px; }
-  .hero-monogram { right: -14%; }
   .course-portals { grid-template-columns: 1fr; margin: 0 18px; }
   .course-portal { min-height: 250px; }
   .home-intro { padding-inline: 24px; margin-top: 64px; }
@@ -353,15 +351,6 @@ body.guide-page .page-hero {
   overflow: hidden;
   padding: 66px clamp(28px,7vw,88px);
   background: linear-gradient(100deg,#fffdfa 0 49%,rgba(247,241,236,.65) 70%,#e8ddd6);
-}
-body.guide-page .page-hero::after {
-  content: "RY";
-  position: absolute;
-  right: 8%;
-  top: 50%;
-  color: rgba(111,21,27,.08);
-  font: 190px/1 Georgia,serif;
-  transform: translateY(-50%);
 }
 body.guide-page .page-hero h1 {
   position: relative;
@@ -598,10 +587,8 @@ body.guide-page .category-card .pill-link:hover { color: var(--ry-wine); backgro
 .home-hero::before { content: ""; position: absolute; right: 0; bottom: 0; width: 46%; height: 75%; background: linear-gradient(130deg,transparent 45%,rgba(255,255,255,.82) 46% 60%,transparent 61%); opacity: .7; }
 .home-hero .entry-copy h1 { margin: 17px 0 12px; font-size: clamp(42px,5.4vw,67px); line-height: 1.28; }
 .home-hero .entry-copy p { max-width: 410px; margin-top: 18px; font-size: 15px; line-height: 2; }
-.hero-monogram { right: 16%; font-family: Georgia,serif; font-size: 220px; }
 .course-portals { gap: 14px; margin: -4px 0 0; }
 .course-portal { min-height: 290px; border-radius: 8px; padding: 36px; box-shadow: inset 0 0 70px rgba(255,255,255,.06); }
-.course-portal::after { content: "RY"; float: right; margin-top: -85px; color: rgba(255,255,255,.11); font: 120px Georgia,serif; }
 .course-portal h2 { font-size: 32px; }
 .course-portal p { margin-top: 32px; }
 .popular-section { padding: 38px 0 20px; }
@@ -1842,4 +1829,139 @@ body.dance-page.dance-page .index-bar a.active { color: #294967; }
   .teacher-profile-content { grid-template-columns: 1fr; padding-inline: 16px; }
   .teacher-profile-content article { padding: 28px 22px; }
   .teacher-contact { align-items: flex-start; flex-direction: column; gap: 24px; margin: 16px; padding: 28px 24px; }
+}
+
+/* Official LINE brand treatment for matching CTAs */
+.line-match-button,
+.home-page .top-nav .nav-match.line-match-button,
+.match-banner > a.line-match-button,
+.course-line-cta.line-match-button,
+.teacher-contact > a.line-match-button {
+  color: #fff;
+  border: 2px solid #04a947;
+  background-color: #06c755;
+  background-image: linear-gradient(135deg,#08d65e,#04b94d);
+  box-shadow: 0 12px 28px rgba(6,199,85,.32),inset 0 1px rgba(255,255,255,.22);
+}
+.line-match-button:hover,
+.home-page .top-nav .nav-match.line-match-button:hover,
+.match-banner > a.line-match-button:hover,
+.course-line-cta.line-match-button:hover,
+.teacher-contact > a.line-match-button:hover {
+  color: #fff;
+  background-color: #05b94f;
+  background-image: linear-gradient(135deg,#08cf5a,#039f42);
+  filter: none;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(6,199,85,.4),inset 0 1px rgba(255,255,255,.24);
+}
+.line-match-button img {
+  display: block;
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  padding: 3px;
+  border-radius: 9px;
+  background: #fff;
+  object-fit: contain;
+}
+.home-page .top-nav .nav-match.line-match-button { gap: 11px; padding-inline: 18px; }
+.match-banner > a.line-match-button { gap: 16px; }
+.course-line-cta.line-match-button { grid-template-columns: 48px 1fr auto; }
+.teacher-contact > a.line-match-button { display: flex; align-items: center; gap: 12px; }
+
+@media (max-width: 600px) {
+  .line-match-button img { width: 34px; height: 34px; }
+  .course-line-cta.line-match-button { grid-template-columns: 42px 1fr; }
+  .course-line-cta.line-match-button > i { grid-column: 2; }
+}
+
+/* Unified footer brand */
+.unified-footer {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.footer-brand .home-brand-logo { width: 58px; height: 58px; }
+.unified-footer > small { color: #8e817c; font-size: 11px; letter-spacing: .08em; }
+@media (max-width: 600px) {
+  .unified-footer { align-items: flex-start; flex-direction: column; }
+  .footer-brand .home-brand-logo { width: 50px; height: 50px; }
+}
+
+/* Match CTA colors with the site palette while retaining the official LINE icon */
+.line-match-button,
+.home-page .top-nav .nav-match.line-match-button,
+.match-banner > a.line-match-button,
+.course-line-cta.line-match-button,
+.teacher-contact > a.line-match-button {
+  border-color: #4d0d12;
+  background-color: #681218;
+  background-image: linear-gradient(135deg,#7a191f,#4a0b10);
+  box-shadow: 0 12px 28px rgba(77,13,18,.28),inset 0 1px rgba(255,255,255,.18);
+}
+.line-match-button:hover,
+.home-page .top-nav .nav-match.line-match-button:hover,
+.match-banner > a.line-match-button:hover,
+.course-line-cta.line-match-button:hover,
+.teacher-contact > a.line-match-button:hover {
+  background-color: #561015;
+  background-image: linear-gradient(135deg,#70161c,#3f090d);
+  box-shadow: 0 16px 34px rgba(77,13,18,.36),inset 0 1px rgba(255,255,255,.2);
+}
+body.dance-page .line-match-button,
+body.dance-page .course-line-cta.line-match-button {
+  border-color: #16283e;
+  background-color: #294967;
+  background-image: linear-gradient(135deg,#315a7d,#16283e);
+  box-shadow: 0 12px 28px rgba(22,40,62,.3),inset 0 1px rgba(255,255,255,.18);
+}
+body.dance-page .line-match-button:hover,
+body.dance-page .course-line-cta.line-match-button:hover {
+  background-color: #203d59;
+  background-image: linear-gradient(135deg,#294f70,#102135);
+  box-shadow: 0 16px 34px rgba(22,40,62,.38),inset 0 1px rgba(255,255,255,.2);
+}
+
+/* Softer matching CTAs */
+.line-match-button,
+.home-page .top-nav .nav-match.line-match-button,
+.match-banner > a.line-match-button,
+.course-line-cta.line-match-button,
+.teacher-contact > a.line-match-button {
+  color: #5d2024;
+  border-color: #d8b9b3;
+  background-color: #f3e5e1;
+  background-image: linear-gradient(135deg,#fff9f6,#ead6d1);
+  box-shadow: 0 8px 20px rgba(77,13,18,.12),inset 0 1px rgba(255,255,255,.7);
+}
+.line-match-button:hover,
+.home-page .top-nav .nav-match.line-match-button:hover,
+.match-banner > a.line-match-button:hover,
+.course-line-cta.line-match-button:hover,
+.teacher-contact > a.line-match-button:hover {
+  color: #4d0d12;
+  border-color: #c99f98;
+  background-color: #ead6d1;
+  background-image: linear-gradient(135deg,#f8ece8,#dfc4be);
+  box-shadow: 0 10px 24px rgba(77,13,18,.16),inset 0 1px rgba(255,255,255,.72);
+}
+body.dance-page .line-match-button,
+body.dance-page .course-line-cta.line-match-button {
+  color: #213f5b;
+  border-color: #b6cad9;
+  background-color: #e4edf4;
+  background-image: linear-gradient(135deg,#f7fbfd,#d5e3ed);
+  box-shadow: 0 8px 20px rgba(22,40,62,.12),inset 0 1px rgba(255,255,255,.72);
+}
+body.dance-page .line-match-button:hover,
+body.dance-page .course-line-cta.line-match-button:hover {
+  color: #16283e;
+  border-color: #9fb8cc;
+  background-color: #d6e3ed;
+  background-image: linear-gradient(135deg,#edf4f8,#c8d9e6);
+  box-shadow: 0 10px 24px rgba(22,40,62,.16),inset 0 1px rgba(255,255,255,.74);
 }

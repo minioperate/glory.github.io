@@ -58,7 +58,7 @@ function enhanceCoursePage() {
   const title = titleNode?.textContent.replace(/^[AB]\.\d\s*/, "") || meta[1];
   if (titleNode) titleNode.textContent = title;
   hero.insertAdjacentHTML("afterbegin", `<div class="course-breadcrumb"><a href="index.html">首頁</a><span>›</span><a href="${page.startsWith("dance") ? "dance.html" : "boxing.html"}">探索課程</a><span>›</span><b>${title}</b></div><p class="course-slogan">${meta[0]}</p>`);
-  hero.insertAdjacentHTML("beforeend", `<div class="hero-course-tags">${meta[2].map((tag, i) => `<span>${["♙", "☆", "◷"][i]}　${tag}</span>`).join("")}</div><div class="course-side-art"><span>RY</span><img src="person/person_1.jpg" alt="${title}課程形象"></div>`);
+  hero.insertAdjacentHTML("beforeend", `<div class="hero-course-tags">${meta[2].map((tag, i) => `<span>${["♙", "☆", "◷"][i]}　${tag}</span>`).join("")}</div><div class="course-side-art"><img src="person/person_1.jpg" alt="${title}課程形象"></div>`);
 
   const info = document.createElement("section");
   info.className = "course-overview-panel";
@@ -69,7 +69,7 @@ function enhanceCoursePage() {
   teacherSection.classList.add("course-teachers-section");
   teacherSection.insertAdjacentHTML("beforeend", `<a class="all-teachers-link" href="teachers.html">查看所有老師　→</a>`);
 
-  teacherSection.insertAdjacentHTML("afterend", `<section class="booking-process"><h2>如何開始上課？</h2><div class="process-steps"><span><b>⌕</b><small>STEP 01</small><strong>選擇課程</strong></span><i>→</i><span><b>♙</b><small>STEP 02</small><strong>挑選老師</strong></span><i>→</i><span><b>LINE</b><small>STEP 03</small><strong>加入 LINE</strong></span><i>→</i><span><b>▣</b><small>STEP 04</small><strong>專人確認需求</strong></span><i>→</i><span><b>✓</b><small>STEP 05</small><strong>完成媒合</strong></span></div><a class="course-line-cta" href="https://line.me/R/share?text=${encodeURIComponent(`您好，我想詢問${title}課程。`)}" target="_blank" rel="noopener noreferrer"><b>LINE</b><span>加入官方 LINE 開始媒合<small>一對一專屬課程・由專人為你服務</small></span><i>專人服務時間：10:00－21:00　→</i></a></section>`);
+  teacherSection.insertAdjacentHTML("afterend", `<section class="booking-process"><h2>如何開始上課？</h2><div class="process-steps"><span><b>⌕</b><small>STEP 01</small><strong>選擇課程</strong></span><i>→</i><span><b>♙</b><small>STEP 02</small><strong>挑選老師</strong></span><i>→</i><span><b>LINE</b><small>STEP 03</small><strong>加入 LINE</strong></span><i>→</i><span><b>▣</b><small>STEP 04</small><strong>專人確認需求</strong></span><i>→</i><span><b>✓</b><small>STEP 05</small><strong>完成媒合</strong></span></div><a class="course-line-cta line-match-button" href="https://line.me/R/share?text=${encodeURIComponent(`您好，我想詢問${title}課程。`)}" target="_blank" rel="noopener noreferrer"><img src="line-brand-icon/LINE_Brand_icon.png" alt="LINE"><span>加入官方 LINE 開始媒合<small>一對一專屬課程・由專人為你服務</small></span><i>專人服務時間：10:00－21:00　→</i></a></section>`);
 }
 
 function renderTeachers() {

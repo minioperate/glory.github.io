@@ -31,4 +31,4 @@ document.querySelector("[data-teacher-profile]").innerHTML = `
     <article><span>EDUCATION</span><h2>學歷</h2>${list(teacher.education)}<span>EXPERIENCE</span><h2>經歷</h2>${list(teacher.highlights)}${teacher.certificates.length ? `<h3>專業證照</h3>${list(teacher.certificates)}` : ""}</article>
     <article><span>AWARDS</span><h2>競賽與獲獎紀錄</h2>${teacher.awards.length ? list(teacher.awards) : list(teacher.highlights)}<h3>教學評分</h3><p class="rating-empty">目前尚無學員評價，完成課程後即可留下真實評分。</p></article>
   </section>
-  <section class="teacher-contact"><div><span>想和 ${teacher.name} 一起上課？</span><h2>告訴我們你的學習目標</h2></div><a href="https://line.me/R/share?text=${encodeURIComponent(`您好，我想詢問 ${teacher.name} 的課程。`)}" target="_blank" rel="noopener noreferrer">LINE 開始媒合 →</a></section>`;
+  <section class="teacher-contact"><div><span>想和 ${teacher.name} 一起上課？</span><h2>告訴我們你的學習目標</h2></div><a class="line-match-button" href="https://line.me/R/share?text=${encodeURIComponent(`您好，我想詢問 ${teacher.name} 的課程。`)}" target="_blank" rel="noopener noreferrer"><img src="line-brand-icon/LINE_Brand_icon.png" alt="LINE">開始媒合 →</a></section>`;
