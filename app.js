@@ -71,9 +71,37 @@ function enhanceCoursePage() {
   teacherSection.insertAdjacentHTML("afterend", `<section class="booking-process"><h2>如何開始上課？</h2><div class="process-steps"><span><b>⌕</b><small>STEP 01</small><strong>選擇課程</strong></span><i>→</i><span><b>♙</b><small>STEP 02</small><strong>挑選老師</strong></span><i>→</i><span><b>LINE</b><small>STEP 03</small><strong>加入 LINE</strong></span><i>→</i><span><b>▣</b><small>STEP 04</small><strong>專人確認需求</strong></span><i>→</i><span><b>✓</b><small>STEP 05</small><strong>完成媒合</strong></span></div><a class="course-line-cta line-match-button" href="https://line.me/R/share?text=${encodeURIComponent(`您好，我想詢問${title}課程。`)}" target="_blank" rel="noopener noreferrer"><img src="line-brand-icon/LINE_Brand_icon.png" alt="LINE"><span>加入官方 LINE 開始體驗<small>一對一專屬課程・由專人為你服務</small></span><i>專人服務時間：10:00－21:00　→</i></a></section>`);
 }
 
+// Match explicit specialties, including equivalent Chinese/English labels.
+const courseSpecialties = {
+  "dance-mv.html": ["MV", "K-POP", "K-POP MV"],
+  "dance-jazz.html": ["Jazz", "爵士", "爵士舞蹈"],
+  "dance-kids.html": ["幼兒舞蹈", "幼兒律動"],
+  "dance-hiphop.html": ["Hip Hop", "街舞", "熱舞"],
+  "dance-cheerleading.html": ["彩球啦啦", "彩球拉拉"],
+  "boxing-beginner.html": ["競技拳擊", "初階競技拳擊"],
+  "boxing-advanced.html": ["競技拳擊", "進階競技拳擊"],
+  "boxing-sparring.html": ["競技拳擊", "實戰競技拳擊"],
+};
+
+function getTeachersForCourse(page) {
+  const specialties = courseSpecialties[page];
+  if (!specialties) return [];
+  const normalize = (tag) => tag.trim().toLowerCase().replace(/[\s-]+/g, "");
+  const accepted = new Set(specialties.map(normalize));
+  return teachers.filter((teacher) =>
+    teacher.specialty.some((tag) => accepted.has(normalize(tag)))
+  );
+}
+
 function renderTeachers() {
+  const page = window.location.pathname.split("/").pop() || "";
+  const matchingTeachers = getTeachersForCourse(page);
   document.querySelectorAll("[data-teachers]").forEach((root) => {
-    root.innerHTML = teachers.map((teacher) => `
+    if (!matchingTeachers.length) {
+      root.innerHTML = `<p class="teacher-empty">目前尚無符合此課程的老師，歡迎透過下方「開始體驗」洽詢課程安排。</p>`;
+      return;
+    }
+    root.innerHTML = matchingTeachers.map((teacher) => `
       <article class="teacher-card">
         <div class="teacher-media">
           <img src="${teacher.image}" alt="${teacher.name} 的頭像">
