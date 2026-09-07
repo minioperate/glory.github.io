@@ -1966,10 +1966,23 @@ body.dance-page .course-line-cta.line-match-button:hover {
   box-shadow: 0 10px 24px rgba(22,40,62,.16),inset 0 1px rgba(255,255,255,.74);
 }
 
-/* Keep all dance-page text blue, including dynamically inserted course content. */
+/* Medium blue on pale surfaces; light blue on dark course artwork. */
 body.dance-page,
 body.dance-page * {
-  color: #294967 !important;
+  color: #396b91 !important;
+}
+
+body.dance-page.guide-page .category-card,
+body.dance-page.guide-page .category-card * {
+  color: #c6e4ff !important;
+}
+
+body.dance-page.guide-page .category-card .pill-link {
+  color: #396b91 !important;
+}
+
+body.dance-page.guide-page .category-card .pill-link:hover {
+  background: #fff;
 }
 
 /* Pale button surfaces keep blue labels readable in every interaction state. */
