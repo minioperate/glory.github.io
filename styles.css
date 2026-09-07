@@ -2040,3 +2040,33 @@ body.dance-page .line-button:hover {
   .corporate-banner .corporate-link { align-self: center; }
   .corporate-hero { padding-block: 48px; }
 }
+
+/* Portrait focal points measured from the supplied teacher photos. */
+img[src="resume/amber_head.jpg"] { --portrait-x: 49%; --portrait-y: 49%; }
+img[src="resume/inch_head.jpg"] { --portrait-x: 57%; --portrait-y: 34%; }
+img[src="resume/neitzu_head.jpg"] { --portrait-x: 51%; --portrait-y: 35%; }
+.featured-grid img,
+.teacher-media img,
+.teacher-summary > img,
+.teacher-profile-hero > img {
+  object-position: var(--portrait-x, 50%) var(--portrait-y, 40%);
+}
+
+/* Keep faces clear of card text and retain enough height on wide mobile cards. */
+.featured-grid img {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: calc(100% + 36px);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  margin: -18px -18px 18px;
+  opacity: 1;
+  filter: none;
+}
+.teacher-media img,
+.course-teachers-section .teacher-media img {
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
