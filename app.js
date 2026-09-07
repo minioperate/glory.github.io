@@ -29,7 +29,7 @@ const teachers = [
     area: "請洽專人",
     price: "請洽專人",
     time: "請洽專人",
-    specialty: ["彩球拉拉", "爵士"],
+    specialty: ["彩球啦啦", "爵士"],
     availability: [],
   },
 ];
@@ -39,7 +39,7 @@ const coursePageMeta = {
   "dance-jazz.html": ["MOVE WITH ELEGANCE.", "爵士舞蹈", ["線條訓練", "情感表現", "舞台技巧"]],
   "dance-kids.html": ["GROW WITH RHYTHM.", "幼兒舞蹈", ["兒童友善", "律動遊戲", "安全學習"]],
   "dance-hiphop.html": ["FEEL THE BEAT.", "街舞課程", ["零基礎友善", "律動基礎", "風格培養"]],
-  "dance-cheerleading.html": ["SHINE TOGETHER.", "彩球拉拉", ["團隊訓練", "活力編舞", "舞台表現"]],
+  "dance-cheerleading.html": ["SHINE TOGETHER.", "彩球啦啦", ["團隊訓練", "活力編舞", "舞台表現"]],
   "dance-corporate.html": ["CREATE AS A TEAM.", "企業團班", ["客製編排", "彈性人數", "活動演出"]],
   "boxing-beginner.html": ["BUILD YOUR FOUNDATION.", "拳擊入門", ["零基礎友善", "基礎拳法", "體能建立"]],
   "boxing-advanced.html": ["LEVEL UP YOUR SKILLS.", "進階拳擊", ["技術提升", "攻防節奏", "實戰應用"]],
