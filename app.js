@@ -116,68 +116,10 @@ function renderTeachers() {
             ${teacher.specialty.map((tag) => `<span class="tag">${tag}</span>`).join("")}
           </div>
           <a class="button secondary" href="teacher.html?id=${teacher.id}">查看詳細資訊</a>
-          <button class="button secondary booking-trigger" type="button" data-teacher-name="${teacher.name}">洽詢可預約時段</button>
+          <button class="button secondary booking-trigger" type="button" data-teacher-id="${teacher.id}" data-teacher-name="${teacher.name}">洽詢可預約時段</button>
         </div>
       </article>
     `).join("");
-  });
-}
-
-function getMonthlySlots(teacher) {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth();
-  const lastDay = new Date(year, month + 1, 0).getDate();
-  const slots = [];
-
-  for (let date = 1; date <= lastDay; date += 1) {
-    const current = new Date(year, month, date);
-    if (current < new Date(year, month, now.getDate())) continue;
-    teacher.availability.forEach((item) => {
-      if (current.getDay() === item.day && slots.length < 8) {
-        slots.push({ date, time: item.time });
-      }
-    });
-  }
-  return { year, month: month + 1, slots };
-}
-
-function setupBookingDialog() {
-  const dialog = document.createElement("dialog");
-  dialog.className = "booking-dialog";
-  document.body.appendChild(dialog);
-
-  document.addEventListener("click", (event) => {
-    const trigger = event.target.closest(".booking-trigger");
-    if (!trigger) return;
-
-    const teacher = teachers.find((item) => item.name === trigger.dataset.teacherName);
-    const schedule = getMonthlySlots(teacher);
-    const message = encodeURIComponent(`您好，我想詢問 ${teacher.name} ${schedule.year} 年 ${schedule.month} 月的課程預約。`);
-    dialog.innerHTML = `
-      <div class="booking-dialog-head">
-        <div><p>本月預約</p><h2>${teacher.name}｜${schedule.year} 年 ${schedule.month} 月</h2></div>
-        <button class="dialog-close" type="button" aria-label="關閉">×</button>
-      </div>
-      <p class="booking-help">選擇方便的時段，再透過 LINE 與老師確認。</p>
-      <div class="booking-slots">
-        ${schedule.slots.length
-          ? schedule.slots.map((slot) => `<button type="button" class="booking-slot">${schedule.month}/${slot.date}　${slot.time}</button>`).join("")
-          : "<p>本月目前沒有可預約時段，歡迎透過 LINE 詢問。</p>"}
-      </div>
-      <a class="button line-button" href="https://line.me/R/share?text=${message}" target="_blank" rel="noopener noreferrer">用 LINE 詢問</a>
-    `;
-    dialog.showModal();
-  });
-
-  dialog.addEventListener("click", (event) => {
-    if (event.target.closest(".dialog-close")) dialog.close();
-    if (event.target === dialog) dialog.close();
-    const slot = event.target.closest(".booking-slot");
-    if (slot) {
-      dialog.querySelectorAll(".booking-slot").forEach((item) => item.classList.remove("selected"));
-      slot.classList.add("selected");
-    }
   });
 }
 
@@ -209,4 +151,3 @@ function renderDemoVideos() {
 enhanceCoursePage();
 renderTeachers();
 renderDemoVideos();
-setupBookingDialog();

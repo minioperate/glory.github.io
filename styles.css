@@ -2070,3 +2070,38 @@ img[src="resume/neitzu_head.jpg"] { --portrait-x: 51%; --portrait-y: 35%; }
   height: auto;
   aspect-ratio: 4 / 3;
 }
+
+/* Manual booking calendar shared by course cards and teacher profiles. */
+.profile-booking { padding: 24px 0 0; }
+.booking-dialog { max-height: 90dvh; overflow-y: auto; box-sizing: border-box; background: #fffdfb; }
+.booking-dialog .calendar-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.calendar-nav button { width: 44px; height: 44px; border: 1px solid #d9d4d0; border-radius: 6px; background: #f4efeb; font-size: 24px; cursor: pointer; }
+.calendar-nav h3 { font-size: 19px; }
+.calendar-legend,.calendar-note { font-size: 12px; line-height: 1.8; }
+.calendar-week,.calendar-days { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 5px; }
+.calendar-week { margin: 12px 0 8px; text-align: center; }
+.calendar-day { min-width: 0; min-height: 58px; padding: 5px 1px; border: 1px solid #d8b9b3; border-radius: 5px; background: #f8e9e3; cursor: pointer; font: inherit; }
+.calendar-day b,.calendar-day small,.booking-slot small { display: block; }
+.calendar-day small { margin-top: 4px; font-size: 9px; }
+.booking-dialog .calendar-day.closed,.booking-dialog .calendar-day.closed *,
+.booking-dialog .booking-slot.past,.booking-dialog .booking-slot.past * { color: #737373 !important; background: #eeeeec; border-color: #ddd; }
+.booking-dialog .calendar-day.booked,.booking-dialog .calendar-day.booked *,
+.booking-dialog .booking-slot.booked,.booking-dialog .booking-slot.booked * { color: #fff !important; background: #171717; border-color: #171717; }
+.booking-dialog button:disabled { cursor: not-allowed; }
+.calendar-nav button:disabled { opacity: .4; }
+.booking-dialog [aria-pressed="true"] { outline: 3px solid #a44f54; outline-offset: -3px; }
+.booking-dialog button:focus-visible,.calendar-general:focus-visible { outline: 3px solid #347da8; outline-offset: 2px; }
+.booking-dialog .booking-slot { background: #fffaf6; color: #5d2024; }
+.booking-slot small { margin-top: 5px; font-size: 12px; }
+.booking-dialog .booking-slot:not(:disabled):hover { background: #f3e5e1; color: #5d2024; }
+.calendar-selection h3 { margin: 18px 0 0; font-size: 16px; }
+.calendar-send { width: 100%; min-height: 44px; }
+.calendar-send:disabled { opacity: .45; }
+.calendar-general { display: block; margin-top: 18px; text-align: center; text-decoration: underline; }
+.booking-dialog .calendar-note { margin-bottom: 0; }
+@media (max-width: 420px) {
+  .booking-dialog { width: 96vw; padding: 14px; }
+  .calendar-days,.calendar-week { gap: 3px; }
+  .calendar-day { min-height: 54px; }
+  .booking-dialog-head h2 { font-size: 22px; }
+}

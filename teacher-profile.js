@@ -26,6 +26,7 @@ document.title = `${teacher.name}｜老師介紹｜容耀`;
 document.querySelector("[data-teacher-profile]").innerHTML = `
   <a class="teacher-back" href="teachers.html">← 返回全部老師</a>
   <section class="teacher-profile-hero"><img src="${teacher.image}" alt="${teacher.name}"><div><span>${teacher.role}</span><h1>${teacher.name}</h1><p>${teacher.specialty}</p><div class="profile-rating"><b>✦ 專業師資</b><small>資料來源：老師履歷</small></div></div></section>
+  <div class="profile-booking"><button class="button secondary booking-trigger" type="button" data-teacher-id="${teacherProfiles[id] ? id : 'amber'}" data-teacher-name="${teacher.name}">查看月曆・洽詢可預約時段</button></div>
   <section class="teacher-stats">${teacher.stats.map(item => `<div><b>${item[0]}</b><span>${item[1]}</span></div>`).join("")}</section>
   <section class="teacher-profile-content">
     <article><span>EDUCATION</span><h2>學歷</h2>${list(teacher.education)}<span>EXPERIENCE</span><h2>經歷</h2>${list(teacher.highlights)}${teacher.certificates.length ? `<h3>專業證照</h3>${list(teacher.certificates)}` : ""}</article>
