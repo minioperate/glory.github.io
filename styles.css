@@ -2105,3 +2105,51 @@ img[src="resume/neitzu_head.jpg"] { --portrait-x: 51%; --portrait-y: 35%; }
   .calendar-day { min-height: 54px; }
   .booking-dialog-head h2 { font-size: 22px; }
 }
+
+/* Prominent booking entry on each teacher profile. */
+.profile-booking { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; }
+.profile-booking .profile-booking-button { min-height: 48px; min-width: 160px; padding: 12px 24px; color: #fff; background: #70151b; border-color: #70151b; font-size: 17px; font-weight: 700; }
+.profile-booking .profile-booking-button:hover { background: #541015; }
+.profile-booking .profile-booking-button:focus-visible { outline: 3px solid #a44f54; outline-offset: 3px; }
+.profile-booking p { margin: 0; color: #655b57; font-size: 14px; line-height: 1.7; }
+@media (max-width: 650px) {
+  .profile-booking .profile-booking-button { width: 100%; }
+}
+
+/* About Rong Yao: brand story and source-based FAQ. */
+.about-page { background: #f7f3ef; color: #302725; }
+.about-page .site-header { max-width: 1240px; margin: auto; padding: 18px 34px; background: #fffdfb; height: auto; flex-wrap: wrap; gap: 14px; }
+.about-page .top-nav { flex-wrap: wrap; gap: 8px; }
+.about-page .top-nav a[aria-current="page"] { color: #70151b; box-shadow: inset 0 -2px #70151b; }
+.about-main { max-width: 1240px; margin: auto; background: #fffdfb; }
+.about-hero { padding: 72px clamp(24px,7vw,88px); background: linear-gradient(120deg,#fffaf6,#f0e1db); }
+.about-kicker { color: #70151b; font: 700 12px Arial,sans-serif; letter-spacing: .14em; }
+.about-hero h1 { display: flex; flex-wrap: wrap; gap: 0 .4em; margin: 28px 0 44px; color: #591217; font-size: clamp(36px,5.5vw,68px); font-weight: 500; line-height: 1.45; letter-spacing: .06em; }
+.about-hero h1 span { white-space: nowrap; }
+.about-intro { max-width: 780px; }
+.about-intro h2 { margin: 0 0 22px; font-size: clamp(23px,3vw,32px); font-weight: 500; }
+.about-intro p { margin: 16px 0; color: #655b57; font-size: 17px; line-height: 2; }
+.about-intro .about-reassurance { margin-top: 32px; padding: 8px 0 8px 20px; border-left: 3px solid #a66a63; color: #70151b; font-size: 20px; }
+.about-faq { display: grid; grid-template-columns: 1fr 2.2fr; gap: 40px; padding: 64px clamp(24px,5vw,64px); scroll-margin-top: 130px; }
+.about-faq-heading h2 { margin: 16px 0; font-size: 32px; font-weight: 500; }
+.about-faq-list { min-width: 0; }
+.about-faq-item { border-bottom: 1px solid #e3d4ce; }
+.about-faq-item:first-child { border-top: 1px solid #e3d4ce; }
+.about-faq-item summary { padding: 24px 8px; color: #591217; font-size: 18px; line-height: 1.7; cursor: pointer; }
+.about-faq-item summary::marker { color: #a66a63; }
+.about-faq-item summary:focus-visible { outline: 3px solid #a66a63; outline-offset: 2px; }
+.about-faq-item[open] { background: #fbf5f1; }
+.about-faq-item p { margin: 0; padding: 0 24px 24px; color: #655b57; line-height: 1.9; }
+.about-contact { padding: 48px 24px 64px; text-align: center; background: #f5ece7; }
+.about-contact h2 { font-size: 28px; font-weight: 500; color: #591217; }
+.about-contact p { color: #655b57; margin-bottom: 24px; }
+.about-contact .line-match-button { display: inline-flex; align-items: center; gap: 12px; padding: 12px 20px; border-radius: 4px; }
+@media (max-width: 650px) {
+  .about-page .site-header { padding: 16px 20px; }
+  .about-hero { padding-block: 44px; }
+  .about-hero h1 { margin-bottom: 28px; }
+  .about-faq { grid-template-columns: 1fr; gap: 16px; padding-block: 40px; }
+  .about-intro .about-reassurance { font-size: 18px; }
+  body.guide-page .top-nav > a[href="about.html"],
+  body.guide-page .top-nav > a[href="corporate.html"] { display: inline-flex; }
+}
