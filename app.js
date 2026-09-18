@@ -1,40 +1,7 @@
-const teachers = [
-  {
-    name: "布丁",
-    id: "amber",
-    image: "resume/amber_head.jpg",
-    gender: "女",
-    area: "請洽專人",
-    price: "請洽專人",
-    time: "請洽專人",
-    specialty: ["幼兒舞蹈", "MV", "Jazz"],
-    availability: [],
-  },
-  {
-    name: "茵淇教練",
-    id: "inch",
-    image: "resume/inch_head.jpg",
-    gender: "女",
-    area: "請洽專人",
-    price: "請洽專人",
-    time: "請洽專人",
-    specialty: ["競技拳擊", "48 公斤級"],
-    availability: [],
-  },
-  {
-    name: "念慈老師",
-    id: "neitzu",
-    image: "resume/neitzu_head.jpg",
-    gender: "女",
-    area: "請洽專人",
-    price: "請洽專人",
-    time: "請洽專人",
-    specialty: ["彩球啦啦", "爵士"],
-    availability: [],
-  },
-];
+const teachers = window.teacherCatalog.teachers;
 
 const coursePageMeta = {
+  "boxing-kids.html": ["SMALL STEPS. BIG CONFIDENCE.", "兒童拳擊", ["兒童課程", "依年齡安排", "需求評估"]],
   "dance-mv.html": ["DANCE WITH PURPOSE.", "流行舞蹈", ["零基礎友善", "指定歌曲", "彈性安排"]],
   "dance-jazz.html": ["MOVE WITH ELEGANCE.", "爵士舞蹈", ["線條訓練", "情感表現", "舞台技巧"]],
   "dance-kids.html": ["GROW WITH RHYTHM.", "幼兒舞蹈", ["兒童友善", "律動遊戲", "安全學習"]],
@@ -57,40 +24,34 @@ function enhanceCoursePage() {
   const title = titleNode?.textContent.replace(/^[AB]\.\d\s*/, "") || meta[1];
   if (titleNode) titleNode.textContent = title;
   hero.insertAdjacentHTML("afterbegin", `<div class="course-breadcrumb"><a href="index.html">首頁</a><span>›</span><a href="${page.startsWith("dance") ? "dance.html" : "boxing.html"}">探索課程</a><span>›</span><b>${title}</b></div><p class="course-slogan">${meta[0]}</p>`);
-  hero.insertAdjacentHTML("beforeend", `<div class="hero-course-tags">${meta[2].map((tag, i) => `<span>${["♙", "☆", "◷"][i]}　${tag}</span>`).join("")}</div><div class="course-side-art"><img src="person/person_1.jpg" alt="${title}課程形象"></div>`);
-
+  hero.insertAdjacentHTML("beforeend", `<div class="hero-course-tags">${meta[2].map(tag => `<span>${tag}</span>`).join("")}</div>`);
   const info = document.createElement("section");
   info.className = "course-overview-panel";
-  info.innerHTML = `<div class="overview-title"><i></i><h2>這堂課適合你</h2><i></i></div><div class="fit-grid"><div><b>♙</b><strong>零基礎</strong><span>第一次學也可以</span></div><div><b>♫</b><strong>喜歡${page.startsWith("dance") ? "音樂律動" : "運動挑戰"}</strong><span>依照興趣開始</span></div><div><b>✧</b><strong>想提升感受</strong><span>建立技巧與協調</span></div><div><b>♔</b><strong>想專屬學習</strong><span>照自己的進度上課</span></div></div><div class="learn-title"><i></i><h3>這堂課你可以學到</h3><i></i></div><div class="learn-grid"><span>♧<b>基礎律動</b></span><span>♬<b>動作拆解</b></span><span>▣<b>${page.startsWith("dance") ? "舞碼編排" : "攻防技巧"}</b></span><span>☆<b>自信表現</b></span></div>`;
+  const suitability = {
+    "boxing-beginner.html": ["零基礎入門", "從站姿、拳法與步伐開始"],
+    "boxing-advanced.html": ["已有拳擊基礎", "進一步練習組合與攻防節奏"],
+    "boxing-sparring.html": ["已有對練經驗", "需經教練評估後安排"],
+    "boxing-kids.html": ["想探索拳擊的孩子", "依年齡、經驗與需求確認安排"],
+    "dance-mv.html": ["喜歡流行舞碼", "跟著喜歡的歌曲開始練習"],
+    "dance-jazz.html": ["想探索爵士風格", "練習線條、控制與表現"],
+    "dance-kids.html": ["喜歡音樂與活動的孩子", "透過律動探索身體協調"],
+    "dance-hiphop.html": ["對街舞有興趣", "從節奏與律動認識街舞"],
+    "dance-cheerleading.html": ["喜歡團隊與舞台", "探索彩球技巧與團隊默契"],
+  }[page];
+  info.innerHTML = `<p class="eyebrow">IS THIS YOUR NEXT MOVE?</p><h2>這堂課適合你嗎？</h2><div class="fit-grid"><div><strong>${suitability[0]}</strong><span>${suitability[1]}</span></div><div><strong>依照目標安排</strong><span>先確認程度、時間、地點與費用，再開始課程。</span></div></div>`;
   teacherSection.before(info);
 
   teacherSection.querySelector("h2").textContent = "選擇你的老師";
   teacherSection.classList.add("course-teachers-section");
   teacherSection.insertAdjacentHTML("beforeend", `<a class="all-teachers-link" href="teachers.html">查看所有老師　→</a>`);
 
-  teacherSection.insertAdjacentHTML("afterend", `<section class="booking-process"><h2>如何開始上課？</h2><div class="process-steps"><span><b>⌕</b><small>STEP 01</small><strong>選擇課程</strong></span><i>→</i><span><b>♙</b><small>STEP 02</small><strong>挑選老師</strong></span><i>→</i><span><b>LINE</b><small>STEP 03</small><strong>加入 LINE</strong></span><i>→</i><span><b>▣</b><small>STEP 04</small><strong>專人確認需求</strong></span><i>→</i><span><b>✓</b><small>STEP 05</small><strong>完成媒合</strong></span></div><a class="course-line-cta line-match-button" href="https://line.me/R/share?text=${encodeURIComponent(`您好，我想詢問${title}課程。`)}" target="_blank" rel="noopener noreferrer"><img src="line-brand-icon/LINE_Brand_icon.png" alt="LINE"><span>加入官方 LINE 開始體驗<small>一對一專屬課程・由專人為你服務</small></span><i>專人服務時間：10:00－21:00　→</i></a></section>`);
+  teacherSection.insertAdjacentHTML("afterend", `<section class="booking-process"><h2>如何開始上課？</h2><div class="process-steps"><span><b>⌕</b><small>STEP 01</small><strong>選擇課程</strong></span><i>→</i><span><b>♙</b><small>STEP 02</small><strong>挑選老師</strong></span><i>→</i><span><b>LINE</b><small>STEP 03</small><strong>洽詢課程</strong></span><i>→</i><span><b>▣</b><small>STEP 04</small><strong>專人確認需求</strong></span><i>→</i><span><b>✓</b><small>STEP 05</small><strong>完成媒合</strong></span></div><a class="course-line-cta line-match-button" href="#contact" data-contact><img src="line-brand-icon/LINE_Brand_icon.png" alt="LINE"><span>洽詢這堂課<small>一對一專屬課程・由專人為你服務</small></span><i>先聊聊你的學習目標　→</i></a></section>`);
 }
 
-// Match explicit specialties, including equivalent Chinese/English labels.
-const courseSpecialties = {
-  "dance-mv.html": ["MV", "K-POP", "K-POP MV"],
-  "dance-jazz.html": ["Jazz", "爵士", "爵士舞蹈"],
-  "dance-kids.html": ["幼兒舞蹈", "幼兒律動"],
-  "dance-hiphop.html": ["Hip Hop", "街舞", "熱舞"],
-  "dance-cheerleading.html": ["彩球啦啦", "彩球拉拉"],
-  "boxing-beginner.html": ["競技拳擊", "初階競技拳擊"],
-  "boxing-advanced.html": ["競技拳擊", "進階競技拳擊"],
-  "boxing-sparring.html": ["競技拳擊", "實戰競技拳擊"],
-};
-
+// Profile links and course teacher lists share explicit course IDs.
 function getTeachersForCourse(page) {
-  const specialties = courseSpecialties[page];
-  if (!specialties) return [];
-  const normalize = (tag) => tag.trim().toLowerCase().replace(/[\s-]+/g, "");
-  const accepted = new Set(specialties.map(normalize));
-  return teachers.filter((teacher) =>
-    teacher.specialty.some((tag) => accepted.has(normalize(tag)))
-  );
+  const entry = Object.entries(window.teacherCatalog.courses).find(([, course]) => course.href === page);
+  return entry ? teachers.filter(teacher => teacher.courseIds.includes(entry[0])) : [];
 }
 
 function renderTeachers() {
@@ -98,22 +59,19 @@ function renderTeachers() {
   const matchingTeachers = getTeachersForCourse(page);
   document.querySelectorAll("[data-teachers]").forEach((root) => {
     if (!matchingTeachers.length) {
-      root.innerHTML = `<p class="teacher-empty">目前尚無符合此課程的老師，歡迎透過下方「開始體驗」洽詢課程安排。</p>`;
+      root.innerHTML = `<p class="teacher-empty">此課程的師資安排待確認。你可以先了解老師團隊，待洽詢開放後討論合適人選。</p>`;
       return;
     }
     root.innerHTML = matchingTeachers.map((teacher) => `
-      <article class="teacher-card">
+      <article class="teacher-card" data-teacher-id="${teacher.id}">
         <div class="teacher-media">
-          <img src="${teacher.image}" alt="${teacher.name} 的頭像">
+          <a href="teacher.html?id=${teacher.id}"><img src="${teacher.image}" alt="${teacher.name} 的頭像" loading="lazy" style="object-position:${teacher.imagePosition}"></a>
         </div>
         <div class="teacher-body">
           <h3>${teacher.name}</h3>
-          <p>授課地區：${teacher.area}</p>
-          <p>授課費用：${teacher.price === "請洽專人" ? teacher.price : `NT$ ${teacher.price} / 小時`}</p>
-          <p>老師性別：${teacher.gender}</p>
-          <p>可授課時間：${teacher.time}</p>
+          <p>${teacher.summary}</p>
           <div class="tag-row">
-            ${teacher.specialty.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+            ${teacher.courseIds.map(id => `<a class="tag" href="${window.teacherCatalog.courses[id].href}">${window.teacherCatalog.courses[id].title} ↗</a>`).join("")}
           </div>
           <a class="button secondary" href="teacher.html?id=${teacher.id}">查看詳細資訊</a>
           <button class="button secondary booking-trigger" type="button" data-teacher-id="${teacher.id}" data-teacher-name="${teacher.name}">洽詢可預約時段</button>
@@ -123,31 +81,5 @@ function renderTeachers() {
   });
 }
 
-function renderDemoVideos() {
-  document.querySelectorAll(".video-placeholder").forEach((root) => {
-    if (window.location.protocol === "file:") {
-      root.innerHTML = `
-        <a class="video-fallback" href="https://youtu.be/Jz-nzweFaag" target="_blank" rel="noopener noreferrer" aria-label="前往 YouTube 播放課程示範影片">
-          <img src="https://i.ytimg.com/vi/Jz-nzweFaag/hqdefault.jpg" alt="課程示範影片預覽圖">
-          <span class="video-play-button" aria-hidden="true">▶</span>
-          <span class="video-fallback-label">在 YouTube 播放</span>
-        </a>
-      `;
-    } else {
-      root.innerHTML = `
-        <iframe
-          src="https://www.youtube.com/embed/Jz-nzweFaag"
-          title="課程示範影片"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      `;
-    }
-    root.classList.add("has-video");
-  });
-}
-
 enhanceCoursePage();
 renderTeachers();
-renderDemoVideos();

@@ -27,10 +27,7 @@
     if (slots.every((slot) => slot.booked)) return "booked";
     return "closed";
   }
-  function inquiryUrl(name, date = "", slot = null) {
-    const when = slot ? `${date} ${slot.start}–${slot.end}（台灣時間）` : "可授課時間";
-    return `https://line.me/R/share?text=${encodeURIComponent(`您好，我想洽詢 ${name} 的${when}，請協助確認是否可以安排課程。`)}`;
-  }
+  function inquiryUrl() { return "#contact"; }
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const dialog = document.createElement("dialog");
   dialog.className = "booking-dialog";
@@ -64,15 +61,15 @@
     if (!selectedSlot) selectedStart = "";
     dialog.innerHTML = `
       <div class="booking-dialog-head"><div><p>課程時段洽詢</p><h2 id="booking-title">${escapeHtml(schedule.name)}</h2></div><button class="dialog-close" type="button" aria-label="關閉月曆">×</button></div>
-      <p class="booking-help">選擇日期與時段，再透過 LINE 洽詢。送出洽詢不代表預約成立，需由專人確認。</p>
+      <p class="booking-help">選擇日期與時段，再開啟聯絡方式。請在對話中提供老師及所選時段，由專人確認安排。</p>
       <div class="calendar-nav"><button type="button" data-month="-1" aria-label="上一個月" ${monthOffset === 0 ? "disabled" : ""}>‹</button><h3 aria-live="polite">${month.getUTCFullYear()} 年 ${month.getUTCMonth() + 1} 月</h3><button type="button" data-month="1" aria-label="下一個月" ${monthOffset === 11 ? "disabled" : ""}>›</button></div>
       <p class="calendar-legend">淺色：可洽詢　黑色：已預約／約滿　灰色：未開放</p>
       <div class="calendar-week" aria-hidden="true">${["日", "一", "二", "三", "四", "五", "六"].map((day) => `<span>${day}</span>`).join("")}</div>
       <div class="calendar-days" role="group" aria-label="選擇上課日期">${cells}</div>
       ${availableDays ? "" : '<p class="booking-help">本月尚無可洽詢時段，可透過下方連結詢問其他安排。</p>'}
       <div class="calendar-selection" aria-live="polite"><h3>${selectedDate ? `${selectedDate} 的時段` : "請先選擇可洽詢日期"}</h3><div class="booking-slots">${slots.map((slot) => `<button type="button" class="booking-slot ${slot.booked ? "booked" : slot.past ? "past" : ""}" data-start="${slot.start}" aria-pressed="${selectedStart === slot.start}" ${slot.booked || slot.past ? "disabled" : ""}>${slot.start}–${slot.end}<small>${slot.booked ? "已預約" : slot.past ? "已過期" : "可洽詢"}</small></button>`).join("")}</div></div>
-      <button type="button" class="button calendar-send" ${selectedSlot ? "" : "disabled"}>用 LINE 洽詢所選時段</button>
-      <a class="calendar-general" href="${inquiryUrl(schedule.name)}" target="_blank" rel="noopener noreferrer">沒有合適時間？用 LINE 詢問</a>
+      <button type="button" class="button calendar-send" ${selectedSlot ? "" : "disabled"}>開啟聯絡方式</button>
+      <a class="calendar-general" data-contact href="${inquiryUrl(schedule.name)}" target="_blank" rel="noopener noreferrer">沒有合適時間？洽詢其他安排</a>
       <p class="calendar-note">所有時間以台灣時間為準。${schedule.updatedAt ? `時段更新：${escapeHtml(schedule.updatedAt)}。` : ""}實際安排請以專人確認為準。</p>`;
     if (focusSelector) dialog.querySelector(focusSelector)?.focus();
   }
@@ -82,6 +79,10 @@
     const schedules = window.teacherSchedules || {};
     teacherId = trigger.dataset.teacherId || Object.keys(schedules).find((id) => schedules[id].name === trigger.dataset.teacherName);
     if (!schedules[teacherId]) return;
+    const now = taipeiNow();
+    const hasSlots = Object.keys(schedules[teacherId].dates || {}).some(date =>
+      date >= now.date && slotsFor(schedules[teacherId], date, now).some(slot => !slot.past && !slot.booked));
+    if (!hasSlots) { window.openCourseContact(trigger); return; }
     opener = trigger;
     monthOffset = 0; selectedDate = ""; selectedStart = "";
     render(); dialog.showModal();
@@ -110,7 +111,8 @@
       const schedule = window.teacherSchedules[teacherId];
       const selected = slotsFor(schedule, selectedDate).find((item) => item.start === selectedStart && !item.booked && !item.past);
       if (!selected) { selectedStart = ""; render(); return; }
-      window.open(inquiryUrl(schedule.name, selectedDate, selected), "_blank", "noopener,noreferrer");
+      dialog.close();
+      window.openCourseContact(opener);
     }
   });
 })();
