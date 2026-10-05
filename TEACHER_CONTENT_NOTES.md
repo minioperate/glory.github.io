@@ -24,11 +24,11 @@
 - 郁晴的樂齡拳擊列為其他專長，目前不另建新課程。
 - Rex 未提供名次的兩場賽事列於參賽經歷，不補寫名次。念慈履歷中重複的同一筆比賽紀錄只列一次。
 - 年資及在學／國家代表隊經歷依提供的履歷保留，不以目前日期自動增加年數。
-- 圖片取自各老師同名資料夾，原檔保留，網頁使用壓縮後的 `assets/teacher-*.jpg`。
+- 網頁使用壓縮後的 `assets/teacher-*.jpg`。未使用的原始圖片已清理，歷史原檔可從 Git 取回。
 
 ## 維護
 
 - 修改 `teacher-data.js` 的 `courseIds`，兩側連結會一起更新。
 - 新老師的空白時段由 `teacher-schedules.js` 建立，原有時段不覆寫；無可用時段時開啟聯絡入口。
 - 官方 LINE 設定在 `site-config.js`，目前已接上 https://lin.ee/ZQD3vME。
-- 原有老師資料與頁面備份在 `design-backup/before-teacher-resumes/`。
+- 原有老師資料與頁面可從 Git 歷史取回。
