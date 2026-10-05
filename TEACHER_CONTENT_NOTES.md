@@ -30,5 +30,5 @@
 
 - 修改 `teacher-data.js` 的 `courseIds`，兩側連結會一起更新。
 - 新老師的空白時段由 `teacher-schedules.js` 建立，原有時段不覆寫；無可用時段時開啟聯絡入口。
-- 官方 LINE 設定仍在 `site-config.js`；目前尚未提供，洽詢顯示準備中。
+- 官方 LINE 設定在 `site-config.js`，目前已接上 https://lin.ee/ZQD3vME。
 - 原有老師資料與頁面備份在 `design-backup/before-teacher-resumes/`。

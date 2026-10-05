@@ -12,7 +12,7 @@
 
 ## 後續資料
 
-官方 LINE：填入 site-config.js 的 lineUrl，會套用全站。
+官方 LINE：site-config.js 的 lineUrl 已設定為 https://lin.ee/ZQD3vME，套用全站。
 兒童拳擊：可補上確定的適合年齡、授課老師、內容、地點與費用；目前未擅自指定。
 時段：維護 teacher-schedules.js，詳細格式見 SCHEDULE_GUIDE.md。
 
@@ -20,3 +20,9 @@
 
 index.html 為首頁。design-backup/ 保留本輪修改前的網頁、樣式與主要腳本。
 design-review/ 保存瀏覽器截圖與檢查報告。
+
+## 2026-10-05 首頁視覺與聯絡入口
+
+- 首頁採用 2026-09-16 版的米白、酒紅與深藍視覺，以及「找到適合你的老師／開始屬於你的課程」主標。
+- 保留現版課程分類、師資資料、熱門課程切換、媒合步驟與手機選單；首頁專用樣式放在 home-theme.css。
+- 官方 LINE 設為 https://lin.ee/ZQD3vME，並更新頁尾聯絡資訊。
