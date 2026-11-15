@@ -2,6 +2,8 @@
   const header = document.querySelector('.site-header');
   const nav = header?.querySelector('.top-nav');
   if (nav) {
+    // The standalone matching guide is no longer part of the main navigation.
+    nav.querySelectorAll('a[href="index.html#match"]').forEach(link => link.remove());
     nav.id = 'primary-navigation';
     const toggle = document.createElement('button');
     toggle.className = 'menu-toggle';
