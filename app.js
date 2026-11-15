@@ -13,8 +13,13 @@ const coursePageMeta = {
   "boxing-sparring.html": ["FIGHT WITH PURPOSE.", "實戰拳擊", ["教練評估", "安全對練", "戰術訓練"]]
 };
 
+function getCurrentPage() {
+  const segment = window.location.pathname.split("/").filter(Boolean).pop() || "index.html";
+  return segment.includes(".") ? segment : `${segment}.html`;
+}
+
 function enhanceCoursePage() {
-  const page = window.location.pathname.split("/").pop() || "";
+  const page = getCurrentPage();
   const meta = coursePageMeta[page];
   const hero = document.querySelector(".page-hero");
   if (!meta || !hero) return;
@@ -70,7 +75,7 @@ function getTeachersForCourse(page) {
 }
 
 function renderTeachers() {
-  const page = window.location.pathname.split("/").pop() || "";
+  const page = getCurrentPage();
   const matchingTeachers = getTeachersForCourse(page);
   document.querySelectorAll("[data-teachers]").forEach((root) => {
     if (!matchingTeachers.length) {
