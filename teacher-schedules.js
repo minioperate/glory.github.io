@@ -4,7 +4,7 @@
 window.teacherSchedules = {
   amber: { name: "布丁", updatedAt: "", dates: {} },
   inch: { name: "茵淇教練", updatedAt: "", dates: {} },
-  neitzu: { name: "念慈老師", updatedAt: "", dates: {} },
+  neitzu: { name: "慈慈老師", updatedAt: "", dates: {} },
 };
 
 // Keep authored schedules above; create empty entries for newly listed teachers.

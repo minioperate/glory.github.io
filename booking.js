@@ -79,10 +79,6 @@
     const schedules = window.teacherSchedules || {};
     teacherId = trigger.dataset.teacherId || Object.keys(schedules).find((id) => schedules[id].name === trigger.dataset.teacherName);
     if (!schedules[teacherId]) return;
-    const now = taipeiNow();
-    const hasSlots = Object.keys(schedules[teacherId].dates || {}).some(date =>
-      date >= now.date && slotsFor(schedules[teacherId], date, now).some(slot => !slot.past && !slot.booked));
-    if (!hasSlots) { window.openCourseContact(trigger); return; }
     opener = trigger;
     monthOffset = 0; selectedDate = ""; selectedStart = "";
     render(); dialog.showModal();

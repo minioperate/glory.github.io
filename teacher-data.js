@@ -132,7 +132,7 @@ window.teacherCatalog = {
     },
     {
       "id": "neitzu",
-      "name": "念慈",
+      "name": "慈慈",
       "role": "舞蹈老師",
       "category": "dance",
       "specialties": [
@@ -274,7 +274,7 @@ window.teacherCatalog = {
     },
     {
       "id": "lixinhan",
-      "name": "李昕翰",
+      "name": "李昕",
       "role": "舞蹈老師",
       "category": "dance",
       "specialties": [
