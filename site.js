@@ -53,6 +53,10 @@
     });
   }
 
+  document.querySelectorAll('.course-block h3').forEach(heading => {
+    if (heading.textContent.trim() === '洽詢前，可以先想想') heading.textContent = '在課程開始前，你需要知道';
+  });
+
   const tabs = [...document.querySelectorAll('[role="tab"]')];
   const select = tab => {
     tabs.forEach(item => {
